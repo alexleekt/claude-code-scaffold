@@ -1,17 +1,53 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:docs.anthropic.com)",
-      "Bash(mkdir:*)",
-      "Bash(mv:*)",
-      "Bash(ls:*)",
-      "Bash(chmod:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(cp:*)"
     ],
     "deny": []
   },
   "hooks": {
-    "pre_tool_use": [
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/session_start.py"
+          }
+        ]
+      },
+      {
+        "matcher": "resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/session_start.py"
+          }
+        ]
+      },
+      {
+        "matcher": "clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/session_start.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/user_prompt_submit.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
       {
         "matcher": "*",
         "hooks": [
@@ -22,7 +58,7 @@
         ]
       }
     ],
-    "post_tool_use": [
+    "PostToolUse": [
       {
         "matcher": "*",
         "hooks": [
@@ -33,18 +69,18 @@
         ]
       }
     ],
-    "session_start": [
+    "Notification": [
       {
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "uv run .claude/hooks/session_start.py"
+            "command": "uv run .claude/hooks/notification.py"
           }
         ]
       }
     ],
-    "stop": [
+    "Stop": [
       {
         "matcher": "*",
         "hooks": [
@@ -55,13 +91,33 @@
         ]
       }
     ],
-    "user_prompt_submit": [
+    "SubagentStop": [
       {
         "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "uv run .claude/hooks/user_prompt_submit.py"
+            "command": "uv run .claude/hooks/subagent_stop.py"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "manual",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/pre_compact.py"
+          }
+        ]
+      },
+      {
+        "matcher": "auto",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run .claude/hooks/pre_compact.py"
           }
         ]
       }

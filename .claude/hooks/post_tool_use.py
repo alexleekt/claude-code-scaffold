@@ -16,7 +16,7 @@ import json
 import sys
 from typing import Any, Dict
 
-from common_functions import log_event
+from common_functions import log_event, extract_session_id
 
 
 def analyze_tool_result(tool_name: str, tool_params: Dict[str, Any], result: Any) -> None:
@@ -58,7 +58,7 @@ def process_file_operations(tool_name: str, tool_params: Dict[str, Any]) -> None
                     "action": "modified"
                 }
             }
-            log_event("post_tool_use", log_data)
+            log_event("post_tool_use", log_data, session_id)
 
 
 def track_command_execution(tool_name: str, tool_params: Dict[str, Any], result: Any) -> None:
@@ -82,7 +82,7 @@ def track_command_execution(tool_name: str, tool_params: Dict[str, Any], result:
                     "sensitive": True
                 }
             }
-            log_event("post_tool_use", log_data)
+            log_event("post_tool_use", log_data, session_id)
 
 
 def main() -> None:
@@ -91,12 +91,19 @@ def main() -> None:
         # Read JSON input from stdin
         input_data = json.loads(sys.stdin.read())
         
-        # Log the event
-        log_event("post_tool_use", input_data)
+        # Extract session ID for logging
+        session_id = extract_session_id(input_data)
         
-        # Extract tool information
-        tool_name = input_data.get("tool", {}).get("name", "")
-        tool_params = input_data.get("tool", {}).get("parameters", {})
+        # Log the event
+        log_event("post_tool_use", input_data, session_id)
+        
+        # Extract tool information - handle both direct tool name and nested structure
+        if isinstance(input_data.get("tool"), str):
+            tool_name = input_data.get("tool", "")
+            tool_params = input_data.get("parameters", {})
+        else:
+            tool_name = input_data.get("tool", {}).get("name", "")
+            tool_params = input_data.get("tool", {}).get("parameters", {})
         result = input_data.get("result")
         
         # Analyze the tool result

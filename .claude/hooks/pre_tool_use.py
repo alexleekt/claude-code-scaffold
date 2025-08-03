@@ -16,7 +16,7 @@ import json
 import sys
 from typing import Any, Dict
 
-from common_functions import log_event
+from common_functions import log_event, extract_session_id
 
 
 def validate_tool_use(tool_name: str, tool_params: Dict[str, Any]) -> bool:
@@ -66,12 +66,19 @@ def main() -> None:
         # Read JSON input from stdin
         input_data = json.loads(sys.stdin.read())
         
-        # Log the event
-        log_event("pre_tool_use", input_data)
+        # Extract session ID for logging
+        session_id = extract_session_id(input_data)
         
-        # Extract tool information
-        tool_name = input_data.get("tool", {}).get("name", "")
-        tool_params = input_data.get("tool", {}).get("parameters", {})
+        # Log the event
+        log_event("pre_tool_use", input_data, session_id)
+        
+        # Extract tool information - handle both direct tool name and nested structure
+        if isinstance(input_data.get("tool"), str):
+            tool_name = input_data.get("tool", "")
+            tool_params = input_data.get("parameters", {})
+        else:
+            tool_name = input_data.get("tool", {}).get("name", "")
+            tool_params = input_data.get("tool", {}).get("parameters", {})
         
         # Validate tool use
         if not validate_tool_use(tool_name, tool_params):

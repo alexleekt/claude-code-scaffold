@@ -125,6 +125,7 @@ User-specific settings that override main configuration:
 - **Format**: JSON-structured logs with timestamps
 - **Organization**: Date-based files (`hooks_YYYYMMDD.log`)
 - **Content**: Complete hook events, errors, and security incidents
+- **Simple Design**: No file locking, straightforward append operations
 
 ### Log Structure
 ```json
