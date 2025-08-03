@@ -207,6 +207,7 @@ tail -f .claude/logs/hooks_log_$(date +%Y%m%d)_*.jsonl
 
 ### Getting Started
 - [`CLAUDE.md`](CLAUDE.md) - Complete project documentation and configuration guide
+- [`MCP.md`](MCP.md) - Model Context Protocol servers and integrations
 - [`.claude/subagents/`](.claude/subagents/) - Individual sub-agent documentation
 - [`.claude/settings.json`](.claude/settings.json) - Configuration reference
 
