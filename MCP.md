@@ -8,13 +8,30 @@ Model Context Protocol (MCP) is an open standard that enables secure connections
 
 ## Installed MCP Servers
 
+### Serena
+- **Server**: `serena`
+- **Transport**: Stdio (uvx)
+- **Command**: `uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project /Users/alexleekt/git/claude-code-scaffold`
+- **Purpose**: Professional coding agent with semantic coding tools, symbol-based code navigation, intelligent file operations, and memory management
+- **Status**: ✅ Active
+- **Key Features**:
+  - Symbol-based code navigation and editing
+  - Intelligent file search and pattern matching
+  - Project memory management
+  - Context-aware code analysis
+  - IDE integration support
+
 ### Context7
 - **Server**: `context7`
 - **Transport**: HTTP
 - **URL**: `https://mcp.context7.com/mcp`
-- **Purpose**: Enhanced context management and retrieval capabilities
+- **Purpose**: Up-to-date documentation and code examples for libraries and frameworks
 - **Status**: ✅ Active
-- **Installation Date**: 2025-08-03
+- **Key Features**:
+  - Library documentation retrieval
+  - Code examples and snippets
+  - API reference lookup
+  - Framework-specific guidance
 
 ## MCP Server Management
 
@@ -42,8 +59,11 @@ claude mcp remove <server-name>
 
 ## Server Categories
 
+### Development Tools
+- **Serena**: Professional coding agent with semantic tools, symbol navigation, and intelligent code operations
+
 ### Context & Retrieval
-- **Context7**: Advanced context management and document retrieval
+- **Context7**: Library documentation and code examples retrieval
 
 ### Database & Storage
 - *None currently installed*
@@ -51,11 +71,22 @@ claude mcp remove <server-name>
 ### API Integrations  
 - *None currently installed*
 
-### Development Tools
-- *None currently installed*
-
 ### Custom Servers
 - *None currently installed*
+
+## Available Tools
+
+### Serena Tools
+- **Code Navigation**: `find_symbol`, `get_symbols_overview`, `find_referencing_symbols`
+- **File Operations**: `list_dir`, `find_file`, `search_for_pattern`
+- **Code Editing**: `replace_symbol_body`, `insert_after_symbol`, `insert_before_symbol`, `replace_regex`
+- **Memory Management**: `write_memory`, `read_memory`, `list_memories`, `delete_memory`
+- **Project Analysis**: `check_onboarding_performed`, `onboarding`
+- **Utilities**: `restart_language_server`, `think_about_*` tools
+
+### Context7 Tools
+- **Library Resolution**: `resolve-library-id` - Find Context7-compatible library IDs
+- **Documentation**: `get-library-docs` - Retrieve up-to-date library documentation
 
 ## Configuration Notes
 
