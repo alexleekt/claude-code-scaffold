@@ -20,13 +20,13 @@ This is a template and scaffold designed to be cloned and customized. Follow the
 - **Tool Enhancement** - Pre/post tool execution hooks with logging
 - **Notification System** - Permission requests and idle handling
 
-### 🤖 Specialized Sub-Agents
-- **Quality Assurance** (`quality-assurance`) - Code quality, testing, security scanning
-- **Requirements Clarity** (`requirements-clarity`) - Requirement analysis and validation
-- **Documentation Maintenance** (`documentation-maintenance`) - Doc updates and auditing
-- **UX Differentiation** (`ux-differentiation`) - Competitive user experience advantages
+### 🤖 Specialized Agents
+- **Code Quality Guardian** (`code-quality-guardian`) - Comprehensive code quality assurance, test coverage, security scanning
+- **Requirements Analyst** (`requirements-analyst`) - Requirement analysis, clarification, and validation
+- **Documentation Maintenance** (`documentation-maintenance`) - Doc updates, auditing, and maintenance
+- **UX Advantage Architect** (`ux-advantage-architect`) - Exceptional user experiences with competitive advantage
 - **Strategic Visionary** (`strategic-visionary`) - Future-thinking and architectural flexibility
-- **Implementation Standards** (`implementation-standards`) - Modern tooling with UV and Finch
+- **Modern Tooling Standards** (`modern-tooling-standards`) - Modern development setup with UV and Finch
 
 ### 📊 Advanced Features
 - **Centralized Logging** - JSON Lines format with session tracking
@@ -60,8 +60,8 @@ vim CLAUDE.md          # Add your project context and instructions
 vim README.md          # Replace with your project README
 vim .claude/settings.json  # Configure permissions and hooks for your needs
 
-# Customize sub-agents (optional)
-ls .claude/subagents/  # Review and modify agent configurations
+# Customize agents (optional)
+ls .claude/agents/  # Review and modify agent configurations
 ```
 
 ### 3. Start Using Claude Code
@@ -75,30 +75,30 @@ claude code
 
 ## 🎯 Sub-Agent Usage Examples
 
-### Quality Assurance
+### Code Quality Guardian
 ```python
 Task(
     description="Quality audit after refactoring",
     prompt="Perform comprehensive quality assurance: analyze code quality, verify test coverage, check security issues, ensure standards compliance.",
-    subagent_type="quality-assurance"
+    subagent_type="code-quality-guardian"
 )
 ```
 
-### Requirements Clarity
+### Requirements Analyst
 ```python
 Task(
     description="Clarify user story requirements",
     prompt="Analyze user request for clarity: break down into specific requirements, identify ambiguities, define acceptance criteria.",
-    subagent_type="requirements-clarity"
+    subagent_type="requirements-analyst"
 )
 ```
 
-### UX Differentiation
+### UX Advantage Architect
 ```python
 Task(
     description="UX differentiation analysis",
     prompt="Identify competitive advantages, suggest innovative interactions, propose performance benefits, define success metrics.",
-    subagent_type="ux-differentiation"
+    subagent_type="ux-advantage-architect"
 )
 ```
 
@@ -111,12 +111,12 @@ Task(
 )
 ```
 
-### Implementation Standards
+### Modern Tooling Standards
 ```python
 Task(
     description="Setup project with modern tooling",
     prompt="Set up Python project with UV, configure multi-stage Dockerfile, create development environment with Finch.",
-    subagent_type="implementation-standards"
+    subagent_type="modern-tooling-standards"
 )
 ```
 
@@ -135,13 +135,13 @@ Task(
 │   ├── notification.py        # Permission and idle handling
 │   ├── stop.py                # Session cleanup
 │   └── subagent_stop.py       # Subagent completion
-├── subagents/                 # Specialized sub-agent documentation
-│   ├── quality_assurance.md
-│   ├── requirements_clarity.md
-│   ├── documentation_maintenance.md
-│   ├── ux_differentiation.md
-│   ├── strategic_visionary.md
-│   └── implementation_standards.md
+├── agents/                    # Specialized agent documentation
+│   ├── code-quality-guardian.md
+│   ├── requirements-analyst.md
+│   ├── documentation-maintenance.md
+│   ├── ux-advantage-architect.md
+│   ├── strategic-visionary.md
+│   └── modern-tooling-standards.md
 └── logs/                      # Date-based log files
     └── hooks_log_YYYYMMDD_sessionid.jsonl
 ```
@@ -208,7 +208,7 @@ tail -f .claude/logs/hooks_log_$(date +%Y%m%d)_*.jsonl
 ### Getting Started
 - [`CLAUDE.md`](CLAUDE.md) - Complete project documentation and configuration guide
 - [`MCP.md`](MCP.md) - Model Context Protocol servers and integrations
-- [`.claude/subagents/`](.claude/subagents/) - Individual sub-agent documentation
+- [`.claude/agents/`](.claude/agents/) - Individual agent documentation
 - [`.claude/settings.json`](.claude/settings.json) - Configuration reference
 
 ### Advanced Usage
@@ -220,7 +220,7 @@ tail -f .claude/logs/hooks_log_$(date +%Y%m%d)_*.jsonl
 
 This is a template repository. Contributions should focus on:
 - **Hook System Improvements** - Enhanced functionality and reliability
-- **New Sub-Agents** - Additional specialized agents for common development tasks
+- **New Agents** - Additional specialized agents for common development tasks
 - **Documentation** - Better examples and usage patterns
 - **Security Enhancements** - Improved validation and audit capabilities
 
